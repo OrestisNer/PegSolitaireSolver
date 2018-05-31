@@ -1,9 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
-import javax.swing.JOptionPane;
-
 //-------------------------------------------------------------
 //
 //This program solves Peg Solitaire puzzle with 2 algorithms
@@ -64,17 +58,16 @@ import javax.swing.JOptionPane;
 public class Main {	
 
 	public static void main(String[] args) {	
-		/*FileUtils.checkArguments(args);
+		FileUtils.checkArguments(args);
 		int method=FileUtils.getMethod(args[0]);
 		Integer[][] board=FileUtils.getBoardFromFile(args[1]);
-		FileUtils.checkBoard(board);*/
+		FileUtils.checkBoard(board);
 		
 		long start= System.currentTimeMillis();
 		
-		int maxDepth=SearchUtils.getMaxDepth(Boards.K);
-		System.out.println(maxDepth);
-		TreeNode root= SearchUtils.initializeSearch(Boards.K);
-		TreeNode solution=SearchUtils.search(root, maxDepth,0);
+		int maxDepth=SearchUtils.getMaxDepth(board);
+		TreeNode root= SearchUtils.initializeSearch(board);
+		TreeNode solution=SearchUtils.search(root, maxDepth,method);
 		
 		long end= System.currentTimeMillis();
 		long timeInMillis= end-start;
@@ -85,7 +78,7 @@ public class Main {
 		   System.out.println("\n\nSolution Found.");
 		   System.out.println("Time(millis): "+timeInMillis+"\nTime(secs): "+timeInSecs);
 		   System.out.println("Nodes visited: "+solution.getNodesChecked());
-		   //FileUtils.writeSolutionToFile(args[2], solution);
+		   FileUtils.writeSolutionToFile(args[2], solution);
 	    }
 		
 	}
